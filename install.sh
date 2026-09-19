@@ -54,17 +54,46 @@ else
     echo "✓ Installed to $USER_BIN_DIR/iactivate"
 fi
 
-# 4. Clean Up Temporary Build Parts
-echo "[4/4] Cleaning up temporary installation parts..."
+# 4. Create Desktop Application Launcher (.desktop file)
+echo "[4/5] Creating Desktop Application Launcher..."
+DESKTOP_ENTRY="[Desktop Entry]
+Version=1.0
+Type=Application
+Name=I-ACTIVATE 12+ PRO
+Comment=I-ACTIVATE 12+ PRO Device Tool
+Exec=iactivate
+Icon=utilities-terminal
+Terminal=true
+Categories=Utility;System;
+Keywords=iactivate;bypass;activate;
+"
+
+SYSTEM_APPS="/usr/share/applications/iactivate.desktop"
+USER_APPS="$HOME/.local/share/applications/iactivate.desktop"
+
+if echo "$DESKTOP_ENTRY" | sudo tee "$SYSTEM_APPS" > /dev/null 2>&1; then
+    sudo chmod +x "$SYSTEM_APPS" 2>/dev/null
+    echo "✓ Desktop shortcut added to Applications menu"
+else
+    mkdir -p "$HOME/.local/share/applications"
+    echo "$DESKTOP_ENTRY" > "$USER_APPS"
+    chmod +x "$USER_APPS"
+    echo "✓ Desktop shortcut added to Applications menu"
+fi
+
+if command -v update-desktop-database &> /dev/null; then
+    sudo update-desktop-database /usr/share/applications > /dev/null 2>&1 || true
+fi
+
+# 5. Clean Up Temporary Build Parts
+echo "[5/5] Cleaning up temporary installation parts..."
 rm -f "$DIST_DIR/I-ACTIVATE-12+.part_"* "$TEMP_BIN" 2>/dev/null
 
 echo "=================================================================="
 echo "🎉 INSTALLATION COMPLETE!"
-echo "You can now run the app anytime from any terminal by typing:"
-echo ""
-echo "   iactivate"
-echo "   OR"
-echo "   I-ACTIVATE-12+"
+echo "You can now run the app anytime from:"
+echo " 1. Applications Menu -> Search for 'I-ACTIVATE 12+ PRO'"
+echo " 2. Terminal -> Type 'iactivate'"
 echo "=================================================================="
 
 # Launch app directly after installation
@@ -73,3 +102,4 @@ if command -v iactivate &> /dev/null; then
 elif [ -f "$HOME/.local/bin/iactivate" ]; then
     exec "$HOME/.local/bin/iactivate" "$@"
 fi
+

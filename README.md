@@ -64,19 +64,23 @@ bash install.sh
 2. Installs required Apple USB communication tools (`usbmuxd`, `libimobiledevice-utils`, `ideviceinstaller`).
 3. Reassembles the compiled executable package.
 4. Registers the application globally to `/usr/local/bin/iactivate`.
-5. Cleans up temporary installation build parts.
+5. Creates a Desktop Application entry in your system's Applications menu (`I-ACTIVATE 12+ PRO`).
+6. Cleans up temporary installation build parts.
 
 ---
 
 ## 🚀 How to Run the Tool
 
-After running `install.sh` once, you do **NOT** need to open the folder or run `install.sh` again. 
+After running `install.sh` once, you can launch the app anytime using **either** of the following methods:
 
-Simply open **any terminal window** anywhere on your system and type:
+1. **From System Applications Menu:**
+   - Search for **`I-ACTIVATE 12+ PRO`** in your Linux app menu / launcher and click to open.
 
-```bash
-iactivate
-```
+2. **From Any Terminal Window:**
+   ```bash
+   iactivate
+   ```
+
 *or*
 ```bash
 I-ACTIVATE-12+
