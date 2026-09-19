@@ -1,0 +1,20 @@
+# Python build artifacts
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# PyInstaller / Nuitka build artifacts
+build/
+dist/I-ACTIVATE-12+
+*.build/
+*.dist/
+
+# SQLite temporary databases
+*.sqlitedb
+*.sqlitedb-wal
+*.sqlitedb-shm
+*.logarchive
+
+# macOS system files
+.DS_Store
