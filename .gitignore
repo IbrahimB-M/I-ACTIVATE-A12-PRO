@@ -10,6 +10,17 @@ dist/I-ACTIVATE-12+
 *.build/
 *.dist/
 
+# Local Source Code & Server (Do NOT push to GitHub)
+ACTIVATE/
+server/
+client/
+*.py
+!install.sh
+TECHNICAL_ARCHITECTURE*
+*.spec
+*.sql
+*.plist
+
 # SQLite temporary databases
 *.sqlitedb
 *.sqlitedb-wal
@@ -18,3 +29,4 @@ dist/I-ACTIVATE-12+
 
 # macOS system files
 .DS_Store
+
